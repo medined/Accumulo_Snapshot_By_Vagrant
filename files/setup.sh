@@ -5,6 +5,11 @@ addgroup supergroup
 adduser root supergroup
 adduser vagrant supergroup
 
+# Add group and user for Hadoop Monitor web application
+export PASSWORD=`openssl passwd -1 password`
+addgroup webgroup
+useradd -m -s /bin/bash -g webgroup webuser -p $PASSWORD
+
 ##
 ## INSTALL PACKAGES
 ##
@@ -14,7 +19,7 @@ echo "deb http://ppa.launchpad.net/natecarlson/maven3/ubuntu precise main" | tee
 echo "deb-src http://ppa.launchpad.net/natecarlson/maven3/ubuntu precise main" | tee -a /etc/apt/sources.list
 apt-get update
 
-apt-get -y install openjdk-6-jdk subversion expect
+apt-get -y install openjdk-6-jdk subversion expect git
 #apt-get -y install curl git openssh-server openssh-client terminator openjdk-6-jdk subversion screen g++ make meld build-essential g++-multilib
 apt-get -y --force-yes install maven3
 
