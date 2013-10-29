@@ -16,5 +16,8 @@ vagrant ssh master -c "hadoop fs -mkdir /user/accumulo"
 
 vagrant ssh master -c "zkServer.sh start"
 
+echo "Sleeping for 45 seconds to allow the namenode to come out of safe mode."
+sleep 45
+
 vagrant ssh master -c "echo -e 'instance\nsecret\nsecret\n' | accumulo init --clear-instance-name"
 vagrant ssh master -c "accumulo_home/bin/accumulo/bin/start-all.sh"
