@@ -13,14 +13,11 @@ cd accumulo-$MY_ACCUMULO_VERSION
 ln -s $BASE_DIR/software/accumulo-$MY_ACCUMULO_VERSION $BASE_DIR/software/accumulo
 
 pushd $BASE_DIR/software/accumulo-$MY_ACCUMULO_VERSION
-mvn package -DskipTests -DDEV_ACCUMULO_HOME=$BASE_DIR/bin/accumulo-$MY_ACCUMULO_VERSION
+mvn package -DskipTests -DDEV_ACCUMULO_HOME=$BASE_DIR/bin
 popd
 echo "Compiled accumulo"
 
-ln -s $BASE_DIR/bin/accumulo-$MY_ACCUMULO_VERSION $BASE_DIR/bin/accumulo
-
-mkdir -p $BASE_DIR/bin/accumulo/lib/ext $BASE_DIR/bin/accumulo/logs $BASE_DIR/bin/accumulo/walogs
-echo "Created ext, logs, and walogs directory."
+ln -s $BASE_DIR/bin/accumulo-$MY_ACCUMULO_VERSION-SNAPSHOT-dev/accumulo-${MY_ACCUMULO_VERSION}-SNAPSHOT $BASE_DIR/bin/accumulo
 
 cp $BASE_DIR/bin/accumulo/conf/examples/512MB/standalone/* $BASE_DIR/bin/accumulo/conf
 
