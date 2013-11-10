@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export MY_ACCUMULO_VERSION=1.6.0
+export MY_ACCUMULO_VERSION=1.7.0
 
 mkdir -p $BASE_DIR/software/accumulo-$MY_ACCUMULO_VERSION $BASE_DIR/bin/accumulo-$MY_ACCUMULO_VERSION
 
@@ -13,7 +13,7 @@ cd accumulo-$MY_ACCUMULO_VERSION
 ln -s $BASE_DIR/software/accumulo-$MY_ACCUMULO_VERSION $BASE_DIR/software/accumulo
 
 pushd $BASE_DIR/software/accumulo-$MY_ACCUMULO_VERSION
-mvn package -DskipTests -DDEV_ACCUMULO_HOME=$BASE_DIR/bin
+mvn package -Dhadoop.profile=1.2 -Dhadoop.version=1.2.1 -Passemble -DskipTests -DDEV_ACCUMULO_HOME=$BASE_DIR/bin
 popd
 echo "Compiled accumulo"
 
